@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html>  
+<head>
+    <script type="text/javascript">
+
+        var msg = "";
+
+        function IsValid(name, MsgName)
+        {
+            var Validity = true;
+            var element = document.getElementById(name);
+            if ((element.value == "") || (name == 'PhonePrefix' && element.value == '000') || (name == "gender" && !element.checked && !document.getElementById('male').checked && !document.getElementById('other').checked)) {
+                element.focus;
+                msg += '\n' + MsgName + ' must be filled!';
+                Validity = false;
+            }
+
+            else {
+
+                if (name == 'password') {
+                    if (element.value.length < 4) {
+                        element.focus;
+                        msg += "\nPassword must be at least 4 characters long!";
+                        Validity = false;
+                    }
+
+                    if (element.value != document.getElementById('password2').value) {
+                        element.focus;
+                        msg += "\nPasswords don't match!";
+                        Validity = false;
+                    }
+                }
+
+                if (name == 'PhoneNumber') {
+                    if (element.value.length != 7) {
+                        element.focus;
+                        msg += "\nPhone number must be 10 digits long! (That's seven digits in the phone number section)!"
+                        Validity = false;
+                    }
+
+                    if (isNaN(element.value)) {
+                        element.focus;
+                        msg += '\nPhone Number Must be only digits!';
+                        Validity = false;
+                    }
+                }
+
+                if (name == 'agree') {
+                    if (!(element.checked)) {
+                        element.focus;
+                        msg += '\nYou must agree to the terms and conditions!';
+                        Validity = false;
+                    }
+                }
+            }
+            return Validity;
+
+        }
+
+        function ValidateForm()
+        {
+            msg = "";
+            var FNameValid = IsValid('FirstName', 'First Name');
+            var LNamwValid = IsValid('LastName', 'Last Name');
+            var GenderValid = IsValid('gender', 'Gender');
+            var DateValid = IsValid('birthday', 'Birthday');
+            var PhonePrefixValid = IsValid('PhonePrefix', 'Phone Prefix');
+            var PhoneNumberValid = IsValid('PhoneNumber', 'Phone Number');
+            var UserNameValid = IsValid('username', 'Username');
+            var EmailValid = IsValid('email', 'Email Adress');
+            var PasswordValid = IsValid('password', 'Password');
+            var Password2Valid = IsValid('password2', 'Password Confirmation');
+            var agreement = IsValid('agree', '');
+            var FormValid = FNameValid && LNamwValid && GenderValid && DateValid && PhonePrefixValid && PhoneNumberValid && UserNameValid && EmailValid && PasswordValid && Password2Valid && agreement;
+            if (!FormValid)
+                alert(msg);
+            else
+                alert("Sign Up Succesful!");
+            return FormValid;
+        }
+    </script>
+
+    <title>Sign Up</title>
+</head>
+<body>
+
+    <p>
+        <span style="font-size:19.6px">
+            <a href="../ServerSide/HomePage" target="_blank">Home Page</a> |
+            <span style="font-weight:bolder">Sign Up</span> |
+            <a href="SignIn.html" target="_blank"> Sign In</a> |
+            <a href="About Me.html">About Me</a> |
+            <a href="Sources.html">D&D Sites</a> |
+            <a href="About the Subject.html"> About D&D </a>
+        </span>
+    </p>
+
+    <form action="../ServerSide/HomePage" name="SignUp" onsubmit="return ValidateForm()" method="post">
+        <fieldset id="PersDet">
+            <legend>Personal Details</legend>
+            First Name: <input name="FtName" type="text" id="FirstName" /> <br /> <br />
+            Last Name:  <input name="LName" id="LastName" type="text" /> <br /> <br />
+            Gender: <br /> <br />
+            <input name="gender" id="gender" type="radio" value="female" /> Female <br /> <br />
+            <input name="gender" id="male" type="radio" value="male" /> Male <br /> <br />
+            <input name="gender" id="other" type="radio" value="other" /> Other <br /> <br />
+            Birth Date: <input name="birthday" id="birthday" type="date" /> <br /> <br />
+            Phone Number: <select id="PhonePrefix" name="PhonePrefix">
+                <option value="000">--Phone Prefix--</option>
+                <option value="050">050</option>
+                <option value="052">052</option>
+                <option value="053">053</option>
+                <option value="054">054</option>
+                <option value="055">055</option>
+                <option value="058">058</option>
+                <option value="059">059</option>
+            </select><input name="PhoneNumber" id="PhoneNumber" type="text" /> <br /> <br />
+            <input id="Reset" type="reset" value="Clear" /> <br /> <br /> <!--Addmitedly clears whole form and not just personal details, but still looks better.-->
+        </fieldset>
+        <br />
+        <br />
+        <br />
+        <fieldset id="LoginDet">
+            <legend>Login Details</legend>
+            User Name: <input type="text" name="userame" id="username" /> <br /> <br />
+            Email: <input type="email" name="email" id="email" /> <br /> <br />
+            Password: <input type="password" name="password" id="password" /> <br /> <br />
+            Confirm Password: <input type="password" name="password2" id="password2" /> <br /> <br />
+            <input type="checkbox" name="agree" id="agree" value="agreed" />I have read and I agree to the terms and conditions<br /> <br />
+            <input id="Reset1" type="reset" value="Clear" />
+        </fieldset>
+        <br /> <br />
+        <input id="Submit1" name="sumbmit" type="submit" value="Sign Up" />
+        <div id="personal">
+
+        </div>
+    </form>
+</body>
+</html>
