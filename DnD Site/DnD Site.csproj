@@ -105,10 +105,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ServerSide\HomePage.aspx" />
-    <Content Include="ServerSide\SignUp.aspx" />
-    <Content Include="WebPages\About Me.html" />
-    <Content Include="WebPages\About the Subject.html" />
+    <Content Include="App_Data\Database.accdb" />
+    <Content Include="StyleSheets\DefaultStyle.css" />
+    <Content Include="WebPages\ActionPages\DeleteConfirmer.aspx" />
+    <Content Include="WebPages\ActionPages\Editor.aspx" />
+    <Content Include="WebPages\ProcessPages\Updater.aspx" />
+    <Content Include="WebPages\ProcessPages\Deleter.aspx" />
+    <Content Include="WebPages\Visitables\NoSignIn\AboutMe.aspx" />
+    <Content Include="WebPages\Visitables\NoSignIn\Sites.aspx" />
+    <Content Include="WebPages\Visitables\SignedIn\HomePage.aspx" />
+    <Content Include="WebPages\Visitables\SignedIn\Manager.aspx" />
+    <Content Include="WebPages\Visitables\SignedIn\Profile.aspx" />
+    <Content Include="WebPages\Visitables\NoSignIn\SignIn.aspx" />
+    <Content Include="WebPages\ActionPages\SignInNotFound.aspx" />
+    <Content Include="WebPages\ProcessPages\SignOut.aspx" />
+    <Content Include="WebPages\ProcessPages\SignUp.aspx" />
+    <Content Include="WebPages\Visitables\NoSignIn\About Me.html" />
+    <Content Include="WebPages\Visitables\NoSignIn\About the Subject.html" />
     <Content Include="About.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -164,17 +177,17 @@
     <Content Include="Scripts\WebForms\WebForms.js" />
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
-    <Content Include="WebPages\SignIn.html" />
-    <Content Include="WebPages\SignUp.html" />
+    <Content Include="WebPages\Visitables\NoSignIn\SignUp.html" />
     <Content Include="Site.Master" />
-    <Content Include="WebPages\Sources.html" />
-    <Content Include="StyleSheet1.css" />
     <Content Include="ViewSwitcher.ascx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Bundle.config" />
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Code\MyAdoHelperAccess.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
@@ -202,18 +215,92 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServerSide\HomePage.aspx.cs">
+    <Compile Include="WebPages\ActionPages\DeleteConfirmer.aspx.cs">
+      <DependentUpon>DeleteConfirmer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebPages\ActionPages\DeleteConfirmer.aspx.designer.cs">
+      <DependentUpon>DeleteConfirmer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebPages\ActionPages\Editor.aspx.cs">
+      <DependentUpon>Editor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebPages\ActionPages\Editor.aspx.designer.cs">
+      <DependentUpon>Editor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebPages\ProcessPages\Updater.aspx.cs">
+      <DependentUpon>Updater.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebPages\ProcessPages\Updater.aspx.designer.cs">
+      <DependentUpon>Updater.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebPages\ProcessPages\Deleter.aspx.cs">
+      <DependentUpon>Deleter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebPages\ProcessPages\Deleter.aspx.designer.cs">
+      <DependentUpon>Deleter.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebPages\Visitables\NoSignIn\AboutMe.aspx.cs">
+      <DependentUpon>AboutMe.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebPages\Visitables\NoSignIn\AboutMe.aspx.designer.cs">
+      <DependentUpon>AboutMe.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebPages\Visitables\NoSignIn\Sites.aspx.cs">
+      <DependentUpon>Sites.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebPages\Visitables\NoSignIn\Sites.aspx.designer.cs">
+      <DependentUpon>Sites.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebPages\Visitables\SignedIn\HomePage.aspx.cs">
       <DependentUpon>HomePage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ServerSide\HomePage.aspx.designer.cs">
+    <Compile Include="WebPages\Visitables\SignedIn\HomePage.aspx.designer.cs">
       <DependentUpon>HomePage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ServerSide\SignUp.aspx.cs">
+    <Compile Include="WebPages\Visitables\SignedIn\Manager.aspx.cs">
+      <DependentUpon>Manager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebPages\Visitables\SignedIn\Manager.aspx.designer.cs">
+      <DependentUpon>Manager.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebPages\Visitables\SignedIn\Profile.aspx.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebPages\Visitables\SignedIn\Profile.aspx.designer.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebPages\Visitables\NoSignIn\SignIn.aspx.cs">
+      <DependentUpon>SignIn.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebPages\ActionPages\SignInNotFound.aspx.cs">
+      <DependentUpon>SignInNotFound.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebPages\ActionPages\SignInNotFound.aspx.designer.cs">
+      <DependentUpon>SignInNotFound.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebPages\ProcessPages\SignOut.aspx.cs">
+      <DependentUpon>SignOut.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebPages\ProcessPages\SignOut.aspx.designer.cs">
+      <DependentUpon>SignOut.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebPages\ProcessPages\SignUp.aspx.cs">
       <DependentUpon>SignUp.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ServerSide\SignUp.aspx.designer.cs">
+    <Compile Include="WebPages\ProcessPages\SignUp.aspx.designer.cs">
       <DependentUpon>SignUp.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
@@ -238,9 +325,7 @@
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />

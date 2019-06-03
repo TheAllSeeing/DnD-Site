@@ -4,15 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Diagnostics;
 
-namespace DnD_Site
+namespace DnD_Site.ServerSide
 {
-    public partial class ServcerSide : System.Web.UI.Page
+    public partial class Profile : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Response.Write(Session["UserTable"]);
         }
     }
 }

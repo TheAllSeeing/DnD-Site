@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DnD_Site
+namespace DnD_Site.ServerSide
 {
 
 
-    public partial class SignInServer
+    public partial class DeleteConfirmer
     {
 
         /// <summary>

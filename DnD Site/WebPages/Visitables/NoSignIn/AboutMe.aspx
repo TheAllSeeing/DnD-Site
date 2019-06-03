@@ -1,23 +1,45 @@
-﻿<!<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title>About Dungeons and Dragons</title>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AboutMe.aspx.cs" Inherits="DnD_Site.WebPages.Visitables.NoSignIn.AboutMe" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
 </head>
-<body background="../Images/blue.jpg">
+<body>
     <link rel="stylesheet" href="StyleSheet1.css" />
+    <form id="form1" runat="server">
     <div style="color:white;" ;>
         <br />
-        <p>
-            <span style="font-size:19.6px">
-                <a href="../ServerSide/HomePage" target="_blank">Home Page</a> |
-                <a href="SignUp.html" target="_blank">Sign Up</a> |
-                <a href="SignIn.html" target="_blank"> Sign In</a> |
-                <span style="font-weight:bolder">About Me</span> |
-                <a href="Sources.html">D&D Sites</a> |
-                <a href="About the Subject.html"> About D&D </a>
-            </span>
-        </p>
+        <link rel="stylesheet" href="../../../StyleSheets/DefaultStyle.css" />
+        <div class="topnav">
+            <a href="../Visitables/SignedIn/HomePage.aspx">Home Page</a>
+            <a href="About Me.html">About Me</a>
+            <a href="About the Subject.html"> About D&D </a>
+            <%
+            if (Session["SignedIn"] != null && (bool)Session["SignedIn"])
+            {
+            %>
+                <a href="../SignedIn/Profile.aspx">Profile</a>
+                <a href="../SignedIn/HomePage.aspx">Home Page</a>
+                <a href="../../ProcessPages/SignOut.aspx">Sign Out</a>
+
+            <%
+
+                if (Session["Admin"] != null && (bool)Session["Admin"])
+                {%>
+                   <a href="../SignedIn/Manager.aspx">User Manager</a>
+              <%}
+            }
+
+            else
+            {
+            %>
+            <a href="SignUp.html">Sign Up</a>
+            <a href="SignIn.html"> Sign In</a>
+            <%}%>
+        </div>
+        <div class="default">
         <h1>About Me: Atai Ambus</h1>
         <p>
             My name is Atai Ambus. I was born on the seventeenth of November. I like stories, philosophy and
@@ -47,5 +69,7 @@
             <br />
         </p>
     </div>
+        </div>
+    </form>
 </body>
 </html>
