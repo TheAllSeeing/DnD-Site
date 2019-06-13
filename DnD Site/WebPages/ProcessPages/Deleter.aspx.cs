@@ -14,7 +14,7 @@ namespace DnD_Site.ServerSide
         {
             ExecuteNonQuery(DELETE($"ID = {Session["ToDelete"]}"));
             Session["Users"] = GetTableWithDel(SELECTAll());
-            Response.Redirect("Manager");
+            Response.Redirect("../Visitables/SignedIn/Manager");
         }
     }
 }

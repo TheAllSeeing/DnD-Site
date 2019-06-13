@@ -1,22 +1,43 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title>About Dungeons and Dragons</title>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AboutTheSubject.aspx.cs" Inherits="DnD_Site.WebPages.Visitables.NoSignIn.AboutTheSubject" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
 </head>
-<body background="../Images/background (1).jpg">
-    <link rel="stylesheet" href="../StyleSheet1.css" />
-    <div style="color:white;">
-        <p>
-            <span style="font-size:19.6px">
-                <a href="../ServerSide/HomePage" target="_blank">Home Page</a> |
-                <a href="SignUp.html" target="_blank">Sign Up</a> |
-                <a href="SignIn.html" target="_blank"> Sign In</a> |
-                <a href="About Me.html">About Me</a> |
-                <a href="Sources.html">D&D Sites</a> |
-                <span style="font-weight:bolder"> About D&D </span>
-            </span>
-        </p>
+<body style="background: url(../../../Images/SubjectBackground.jpg) no-repeat fixed 100% 0;">
+    <form id="form1" runat="server">
+        <div>
+            <link rel="stylesheet" href="../../../StyleSheets/DefaultStyle.css" />
+            <div class="topnav">
+                <a href="AboutMe">About Me</a>
+                <a href="Sites">DnD Sites</a>
+                <%
+                if (Session["SignedIn"] != null && (bool)Session["SignedIn"])
+                {
+                %>
+                    <a href="../SignedIn/Profile">Profile</a>
+                    <a href="../SignedIn/HomePage">Home Page</a>
+                    <a href="../../ProcessPages/SignOut">Sign Out</a>
+
+                <%
+
+                    if (Session["Admin"] != null && (bool)Session["Admin"])
+                    {%>
+                       <a href="../SignedIn/Manager">User Manager</a>
+                  <%}
+                }
+
+                else
+                {
+                %>
+                <a href="SignUp.html">Sign Up</a>
+                <a href="SignIn"> Sign In</a>
+                <%}%>
+            </div>
+            <div class="default">
+                <div style="color:white;">
 
         <h1>My Subject: Dungeons and Dragons</h1>
         
@@ -73,5 +94,8 @@
             <br />
         </p>
     </div>
+            </div>
+        </div>
+    </form>
 </body>
 </html>

@@ -8,6 +8,34 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <link rel="stylesheet" href="../../../StyleSheets/DefaultStyle.css" />
+        <div class="topnav">
+            <a href="../NoSignIn/AboutMe">About Me</a>
+            <a href="../NoSignIn/AboutTheSubject"> About D&D </a>
+            <a href="../NoSignIn/Sites">DnD Sites</a>
+            <%
+            if (Session["SignedIn"] != null && (bool)Session["SignedIn"])
+            {
+            %>
+                <a href="Profile">Profile</a>
+                <a href="../SignedIn/HomePage">Home Page</a>
+                <a href="../../ProcessPages/SignOut">Sign Out</a>
+
+            <%
+
+                if (Session["Admin"] != null && (bool)Session["Admin"])
+                {%>
+                   <a href="../SignedIn/Manager">User Manager</a>
+              <%}
+            }
+
+            else
+            {
+            %>
+            <a href="SignUp">Sign Up</a>
+            <a href="SignIn"> Sign In</a>
+            <%}%>
+            </div>
         <div>
             <%
                 //If there is not yet a Username variable, initilize it with a value from the form.
@@ -40,25 +68,13 @@
                 Response.Write($"Welcome Back, {Session["Username"]},  Visitor #{Application["VisitCount"]},");
 
             %>
-            
-                <link rel="stylesheet" href="../../../StyleSheets/NavBar.css" />
-                <ul>
-                    <li><a href="../NoSignIn/SignUp.aspx">Sign Up</a></li> |
-                    <li><a href="../NoSignIn/SignIn.aspx">About Me</a></li> |
-                    <a href="../WebPages/Sources.html">D&D Sites</a> |
-                    <a href="../WebPages/About the Subject.html">About D&D  </a> |
-                    <a href="Profile.aspx">Profile</a>
-                </ul>
-            <p>
                 Welcome To my <span style="color:orangered;font-size:large">D&D Site!</span>
-                <br />
-                <br />
-                <%if((bool)Session["Admin"])
-                    { %> |
-                <a href="Manager.aspx">Manage Users</a>
-                <%  } %> |
-                <a href="SignOut.aspx">Sign Out</a>
-            </p>
+                <h1><a href="../NoSignIn/AboutTheSubject">Discover D&D!</a></h1>
+                <h1><a href="../NoSignIn/Sites">
+                    Learn about it!
+               <!--     <img src=""-->
+                    </a></h1>
+                <h1><a href="../NoSignIn/AboutMe">Ans see who I am!</a></h1>
         </div>
     </form>
 </body>

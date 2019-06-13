@@ -23,6 +23,7 @@ namespace DnD_Site.App_Code
         public static readonly string[] DefaultColumnsVisual = new string[] {"No.", "ID",
             "FirstName", "LastName", "birthday", "PhoneNumber","gender",
             "email", "Username", "Password", "Delete Buttons" };
+        public static bool FromSignIn = false;
         public static readonly string[] DefaultForbidden = new string[] { "admin" };
         public static readonly Dictionary<string, string> ColumnToHeader = new Dictionary<string, string>
         {
@@ -35,13 +36,25 @@ namespace DnD_Site.App_Code
             {"gender", "Gender"},
             {"email", "Email"},
             {"Username", "Username"},
-            {"Password", "Password"}
+            {"Password", "Password"},
+            {"Delete Buttons", "Delete Buttons"}
         };
 
         public static OleDbConnection ConnectToDb(string FileName = DefaultFileName)
         {
-            string Path = HttpContext.Current.Server.MapPath("../../App_Data/"); //The Database's path.
+            string Path = string.Empty;
+
+            if (FromSignIn)
+            {
+                Path += "../";
+            }
+
+            Path += "../../App_Data/";
+
+            Path = HttpContext.Current.Server.MapPath(Path); //The Database's path.
+
             Path += FileName;
+
             //The connection data as code string.
             string ConnString = "Provider=Microsoft.Jet.OLEDB.4.0;Data source=" + Path + ";Persist Security Info=True";
             OleDbConnection Connection = new OleDbConnection(ConnString);
@@ -82,7 +95,6 @@ namespace DnD_Site.App_Code
             found = (bool)data.Read();  // If null - false. Otherwise - true.
             connection.Close();
             return found;
-
         }
 
         public static DataTable GetDataTableByQuery(string sql, string fileName =DefaultFileName)
@@ -117,6 +129,7 @@ namespace DnD_Site.App_Code
                 TableCode += NewLine + DoubleIndent + "<th>" + ColumnToHeader[Header]
                     + "</th>";
             }
+
             TableCode += NewLine + Indent + "</tr>";
 
             foreach (DataRow Row in DataTable.Rows)
@@ -127,8 +140,7 @@ namespace DnD_Site.App_Code
 
                     foreach (string Key in Headers)
                     {
-                        string UserAttribute;
-
+                        string UserAttribute = string.Empty;
                         switch (Key)
                         {
                             case ("PhoneNumber"):
@@ -138,10 +150,14 @@ namespace DnD_Site.App_Code
                                 UserAttribute = Row[Key].ToString().Remove(
                                     Row[Key].ToString().Length - " 00:00:00".Length);
                                 break;
+                            case ("No."):
+                                UserAttribute = (string)Row["Indexer"].ToString();
+                                break;
                             default:
-                                UserAttribute = (string)Row[Key];
+                                UserAttribute = (string)Row[Key].ToString();
                                 break;
                         }
+
 
                         TableCode += NewLine + DoubleIndent + 
                             "<td>" + UserAttribute + "</td>";
@@ -150,6 +166,7 @@ namespace DnD_Site.App_Code
                     TableCode += NewLine + Indent + "</tr>";
                 }
             }
+
             TableCode += NewLine + "</table>";
             return TableCode;
         }
@@ -193,7 +210,7 @@ namespace DnD_Site.App_Code
             string FileName = DefaultFileName)
         {
             DataTable Table = GetDataTableByQuery(Query);
-            string ButtonColumnName = "Delete Button";
+            string ButtonColumnName = "Delete Buttons";
             string FormTagOpen = 
                    $"<form action=\"{DelURL}\" name=\"DelTable\" method=\"post\">";
             string SubmitButton = $"<input type = \"submit\" name = \"Deleter\" value = \"delete\"/>";
@@ -232,7 +249,7 @@ namespace DnD_Site.App_Code
         }
 
         public static string GetTableWithEdit(string EditPage, string[] Columns,
-            string Query = DefaultSelectAll, string FileName = DefaultFileName)
+            bool IsAdmin, string Query = DefaultSelectAll, string FileName = DefaultFileName)
         {
             DataTable Table = GetDataTableByQuery(Query);
             Table.Columns.Remove("ID");

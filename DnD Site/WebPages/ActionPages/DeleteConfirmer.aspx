@@ -7,13 +7,13 @@
     <title></title>
 </head>
 <body>
+    <link rel="stylesheet" href="../../StyleSheets/DefaultStyle.css" />
     <form id="form1" runat="server">
-        <div>
+        <div class="default">
             <h1>Delete This User?</h1>
             <%Response.Write(Session["UserDelTable"]);%>
-            <a href="Deleter"><input type="button" value="Yes"/></a>
-                <a href="Manager"><input type="button" value="No"/></a>
-                
+            <a href="../ProcessPages/Deleter.aspx"><input type="button" value="Yes"/></a>
+            <a href="../Visitables/SignedIn/Manager.aspx"><input type="button" value="No"/></a>  
         </div>
     </form>
 </body>
