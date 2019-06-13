@@ -106,12 +106,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\Database.accdb" />
+    <Content Include="Images\JoinTheParty.jpg" />
     <Content Include="StyleSheets\DefaultStyle.css" />
     <Content Include="WebPages\ActionPages\DeleteConfirmer.aspx" />
     <Content Include="WebPages\ActionPages\Editor.aspx" />
     <Content Include="WebPages\ProcessPages\Updater.aspx" />
     <Content Include="WebPages\ProcessPages\Deleter.aspx" />
     <Content Include="WebPages\Visitables\NoSignIn\AboutMe.aspx" />
+    <Content Include="WebPages\Visitables\NoSignIn\AboutTheSubject.aspx" />
     <Content Include="WebPages\Visitables\NoSignIn\Sites.aspx" />
     <Content Include="WebPages\Visitables\SignedIn\HomePage.aspx" />
     <Content Include="WebPages\Visitables\SignedIn\Manager.aspx" />
@@ -120,7 +122,6 @@
     <Content Include="WebPages\ActionPages\SignInNotFound.aspx" />
     <Content Include="WebPages\ProcessPages\SignOut.aspx" />
     <Content Include="WebPages\ProcessPages\SignUp.aspx" />
-    <Content Include="WebPages\Visitables\NoSignIn\About Me.html" />
     <Content Include="WebPages\Visitables\NoSignIn\About the Subject.html" />
     <Content Include="About.aspx" />
     <Content Include="Contact.aspx" />
@@ -249,6 +250,13 @@
     </Compile>
     <Compile Include="WebPages\Visitables\NoSignIn\AboutMe.aspx.designer.cs">
       <DependentUpon>AboutMe.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebPages\Visitables\NoSignIn\AboutTheSubject.aspx.cs">
+      <DependentUpon>AboutTheSubject.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebPages\Visitables\NoSignIn\AboutTheSubject.aspx.designer.cs">
+      <DependentUpon>AboutTheSubject.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebPages\Visitables\NoSignIn\Sites.aspx.cs">
       <DependentUpon>Sites.aspx</DependentUpon>

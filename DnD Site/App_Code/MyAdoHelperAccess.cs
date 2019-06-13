@@ -35,12 +35,16 @@ namespace DnD_Site.App_Code
             {"gender", "Gender"},
             {"email", "Email"},
             {"Username", "Username"},
-            {"Password", "Password"}
+            {"Password", "Password"},
+            {"Delete Buttons", "Delete Buttons"}
         };
 
-        public static OleDbConnection ConnectToDb(string FileName = DefaultFileName)
+        public static OleDbConnection ConnectToDb(string FileName = DefaultFileName, string ProjectName = "DnD Site")
         {
-            string Path = HttpContext.Current.Server.MapPath("../../App_Data/"); //The Database's path.
+            string RelativePath = HttpContext.Current.Request.AppRelativeCurrentExecutionFilePath.Replace("~/", "");
+            string AbsouluteCurrentPath = HttpContext.Current.Server.MapPath(RelativePath); //The Database's path.
+            string Path = AbsouluteCurrentPath.Substring(0, AbsouluteCurrentPath.IndexOf(ProjectName) + ProjectName.Length) +
+                "/App_Data/";
             Path += FileName;
             //The connection data as code string.
             string ConnString = "Provider=Microsoft.Jet.OLEDB.4.0;Data source=" + Path + ";Persist Security Info=True";
@@ -74,13 +78,13 @@ namespace DnD_Site.App_Code
         public static bool CanFind(string sql, string FileName = DefaultFileName)
         {
 
-            OleDbConnection connection = ConnectToDb(FileName);
-            connection.Open();
-            OleDbCommand Query = new OleDbCommand(sql, connection);
+            OleDbConnection Connection = ConnectToDb(FileName);
+            Connection.Open();
+            OleDbCommand Query = new OleDbCommand(sql, Connection);
             OleDbDataReader data = Query.ExecuteReader();
             bool found;
             found = (bool)data.Read();  // If null - false. Otherwise - true.
-            connection.Close();
+            Connection.Close();
             return found;
 
         }
@@ -127,7 +131,7 @@ namespace DnD_Site.App_Code
 
                     foreach (string Key in Headers)
                     {
-                        string UserAttribute;
+                        string UserAttribute = string.Empty;
 
                         switch (Key)
                         {
@@ -138,8 +142,11 @@ namespace DnD_Site.App_Code
                                 UserAttribute = Row[Key].ToString().Remove(
                                     Row[Key].ToString().Length - " 00:00:00".Length);
                                 break;
+                            case ("No."):
+                                UserAttribute = (string)Row["Indexer"].ToString();
+                                break;
                             default:
-                                UserAttribute = (string)Row[Key];
+                                UserAttribute = (string)Row[Key].ToString();
                                 break;
                         }
 
@@ -193,7 +200,7 @@ namespace DnD_Site.App_Code
             string FileName = DefaultFileName)
         {
             DataTable Table = GetDataTableByQuery(Query);
-            string ButtonColumnName = "Delete Button";
+            string ButtonColumnName = "Delete Buttons";
             string FormTagOpen = 
                    $"<form action=\"{DelURL}\" name=\"DelTable\" method=\"post\">";
             string SubmitButton = $"<input type = \"submit\" name = \"Deleter\" value = \"delete\"/>";
@@ -231,13 +238,13 @@ namespace DnD_Site.App_Code
             return GetTable(GetDataTableWithDel(DelURL, Query, FileName), DefaultColumnsVisual);
         }
 
-        public static string GetTableWithEdit(string EditPage, string[] Columns,
+        public static string GetTableWithEdit(string EditPage, string[] Columns, string[] Forbidden,
             string Query = DefaultSelectAll, string FileName = DefaultFileName)
         {
             DataTable Table = GetDataTableByQuery(Query);
             Table.Columns.Remove("ID");
             string[] NewRow = new string[Table.Columns.Count];
-            string TableCode = GetTable(Table);
+            string TableCode = GetTable(Table, Columns, Forbidden);
             string FormTagOpen =
                    $"<form action=\"{EditPage}\" name=\"Edit\" method=\"post\">";
             string SubmitButton = $"<input type = \"submit\" name = \"Editor\" value = \"Change\"/>";

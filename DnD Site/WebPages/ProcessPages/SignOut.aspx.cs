@@ -21,6 +21,7 @@ namespace DnD_Site.ServerSide
             Session["Attribute"] = null;
             Session["EditName"] = null;
             Session["SignedIn"] = null;
+            Response.Redirect("../Visitables/NoSignIn/SignIn");
         }
     }
 }

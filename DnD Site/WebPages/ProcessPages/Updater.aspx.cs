@@ -25,7 +25,7 @@ namespace DnD_Site.WebPages.ActionPages
                     ExecuteNonQuery(
                         UPDATE(
                             "PhoneNumber",
-                            Request.Form["Prefix"] + Request.Form["NewValue"],
+                            Request.Form["PhonePrefix"] + Request.Form["NewValue"],
                             Identifier));
                     break;
                 default:
@@ -37,9 +37,12 @@ namespace DnD_Site.WebPages.ActionPages
                     break;
             }
 
-            Session["UserTable"] = GetTableWithEdit("../ActionPages/Editor",
-                DefaultColumns, SELECTAll(Identifier));
-            Response.Redirect("../DynamicPages/Profile");
+            Session["UserTable"] = GetTableWithEdit(
+                "../../ActionPages/Editor",
+                DefaultColumns,
+                new string[] { (bool)Session["Admin"] ? "" : "admin" },
+                SELECTAll(Identifier));
+                Response.Redirect("../Visitables/SignedIn/Profile");
         }
     }
 }

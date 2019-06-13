@@ -14,14 +14,24 @@ public partial class SignIn : System.Web.UI.Page
     {
         if (Page.IsPostBack)
         {
+            Session["Username"] = "Guest";
+            Session["Admin"] = false;
+
+            if (Application["VisitCount"] == null)
+            {
+                Application["VisitCount"] = 0;
+            }
+
+            Application["VisitCount"] = (int)Application["VisitCount"] + 1;
+
             string User = Request.Form["Username"];
             string Password = Request.Form["password"];
             string Selector = SELECT(new string[] { "*" },
                 EqualCheck("AND", "Username", "password"));
 
-            if (CanFind(Selector))
+            if (!CanFind(Selector))
             {
-                Response.Redirect("../ActionPages/SignInNotFound");
+                Response.Redirect("../../ActionPages/SignInNotFound");
             }
 
             Session["Username"] = Request.Form["Username"];
@@ -30,7 +40,7 @@ public partial class SignIn : System.Web.UI.Page
             if(User == "admin" && Password == "admin")
             {
                 Session["Admin"] = true;
-                Session["Users"] = GetTableWithDel("DeleteConfirmer");
+                Session["Users"] = GetTableWithDel("../../ActionPages/DeleteConfirmer");
             }
 
             else
@@ -46,11 +56,12 @@ public partial class SignIn : System.Web.UI.Page
             Application["VisitCount"] = (int)Application["VisitCount"] + 1;
 
             Response.Write($"Visit Count: {Application["VisitCount"]}\tLogged In: {Session["Username"]}");
-            Session["UserTable"] = GetTableWithEdit("../ActionPages/Editor", 
-                DefaultColumns, Selector);
+            Session["UserTable"] = GetTableWithEdit("../../ActionPages/Editor", 
+                DefaultColumns, 
+                new string[] { (bool)Session["Admin"] ? "" : "admin" },
+                Selector);
             Session["SignedIn"] = true;
-            Response.Redirect("HomePage");
-
+            Response.Redirect("../SignedIn/HomePage");
 
             string EqualCheck(string Operator, string key1, string key2)
             {

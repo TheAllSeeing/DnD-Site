@@ -4,31 +4,28 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>About Me</title>
+    <link rel="stylesheet" href="../../../StyleSheets/DefaultStyle.css" />
 </head>
-<body>
+<body style="background: url(../../../Images/blue.jpg) no-repeat fixed 100% 0;">
     <link rel="stylesheet" href="StyleSheet1.css" />
     <form id="form1" runat="server">
-    <div style="color:white;" ;>
-        <br />
-        <link rel="stylesheet" href="../../../StyleSheets/DefaultStyle.css" />
+        <div style="color:white;">
         <div class="topnav">
-            <a href="../Visitables/SignedIn/HomePage.aspx">Home Page</a>
-            <a href="About Me.html">About Me</a>
-            <a href="About the Subject.html"> About D&D </a>
+            <a href="AboutTheSubject"> About D&D </a>
+            <a href="Sites">DnD Sites</a>
             <%
             if (Session["SignedIn"] != null && (bool)Session["SignedIn"])
             {
             %>
-                <a href="../SignedIn/Profile.aspx">Profile</a>
-                <a href="../SignedIn/HomePage.aspx">Home Page</a>
-                <a href="../../ProcessPages/SignOut.aspx">Sign Out</a>
-
+                <a href="../SignedIn/Profile">Profile</a>
+                <a href="../SignedIn/HomePage">Home Page</a>
+                <a href="../../ProcessPages/SignOut">Sign Out</a>
             <%
 
                 if (Session["Admin"] != null && (bool)Session["Admin"])
                 {%>
-                   <a href="../SignedIn/Manager.aspx">User Manager</a>
+                    <a href="../SignedIn/Manager">User Manager</a>
               <%}
             }
 
@@ -36,7 +33,7 @@
             {
             %>
             <a href="SignUp.html">Sign Up</a>
-            <a href="SignIn.html"> Sign In</a>
+            <a href="SignIn"> Sign In</a>
             <%}%>
         </div>
         <div class="default">
@@ -62,8 +59,9 @@
             <br />
             <br />
             <br />
-            <a href="About the Subject.html">
-                <img src="Images/Background (2).jpg" alt="About Me" style="width:105px;height:63px;border:0;">
+            <a href="AboutTheSubject">
+                <img src="../../../Images/Background (2).jpg" alt="About Me" 
+                    style="width:105px;height:63px;border:0;"/>
             </a>
             <br />
             <br />

@@ -4,9 +4,19 @@
  
 }
 
-.me body {
-    background-image: url('../Images/blue.jpg');
+body, html
+{
+    height: 100%;
+    margin: 0;
+}
+
+.background
+{
+    background-image: url(../Images/JoinTheParty.jpg);
+    height: 100%;
+    background-position: center;
     background-repeat: no-repeat;
+    background-size: cover;
     background-attachment: fixed;
 }
 
@@ -92,7 +102,7 @@
         }
 
         /* Add a color to the active/current link */
-        .topnav a.active {
+        .topnav a:active {
             background-color: #4CAF50;
             color: darkslategrey;
         }

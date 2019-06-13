@@ -16,12 +16,14 @@ namespace DnD_Site
             Session["FirstName"] = Request.Form["Firstname"];
             Session["LastName"] = Request.Form["LastName"];
             Session["Username"] = Request.Form["Username"];
+            Session["SignedIn"] = true;
 
             string DbName = "Database.accdb";
             MyAdoHelperAccess.ConnectToDb(DbName);
             string cmd = MyAdoHelperAccess.INSERT( TakeVals("FirstName", "LastName", 
                 "Username", "email", "birthday", "PhoneNumber", "gender", "Password"));
             MyAdoHelperAccess.ExecuteNonQuery(cmd);
+            Response.Redirect("../Visitables/SignedIn/HomePage");
         
         }
 
@@ -32,7 +34,6 @@ namespace DnD_Site
             for (int i = 0; i < Keys.Length; i++)
             {
                 string Key = (string)Keys[i];
-                Response.Write(Key);
                 result[i] = new string[2];
                 result[i][0] = Key;
 
