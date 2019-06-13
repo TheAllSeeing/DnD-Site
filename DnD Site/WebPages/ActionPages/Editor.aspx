@@ -4,10 +4,9 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Atai's D&D Site - Edit your details</title>
-    <link rel="stylesheet" href="../../StyleSheets/DefaultStyle.css" />
+    <title></title>
 </head>
-<body class="default">
+<body>
     <form id="form1" runat="server">
         <div>
             <%  Session["Attribute"] = Request.Form["Attribute"];

@@ -14,26 +14,14 @@ public partial class SignIn : System.Web.UI.Page
     {
         if (Page.IsPostBack)
         {
-            Session["Username"] = "Guest";
-            Session["Admin"] = false;
-
-            if (Application["VisitCount"] == null)
-            {
-                Application["VisitCount"] = 0;
-            }
-
-            Application["VisitCount"] = (int)Application["VisitCount"] + 1;
-            MyAdoHelperAccess.FromSignIn = true;
-
             string User = Request.Form["Username"];
             string Password = Request.Form["password"];
             string Selector = SELECT(new string[] { "*" },
                 EqualCheck("AND", "Username", "password"));
 
-            if (!CanFind(Selector))
+            if (CanFind(Selector))
             {
-                MyAdoHelperAccess.FromSignIn = false;
-                Response.Redirect("../../ActionPages/SignInNotFound");
+                Response.Redirect("../ActionPages/SignInNotFound");
             }
 
             Session["Username"] = Request.Form["Username"];
@@ -42,7 +30,7 @@ public partial class SignIn : System.Web.UI.Page
             if(User == "admin" && Password == "admin")
             {
                 Session["Admin"] = true;
-                Session["Users"] = GetTableWithDel("../../ActionPages/DeleteConfirmer");
+                Session["Users"] = GetTableWithDel("DeleteConfirmer");
             }
 
             else
@@ -58,12 +46,10 @@ public partial class SignIn : System.Web.UI.Page
             Application["VisitCount"] = (int)Application["VisitCount"] + 1;
 
             Response.Write($"Visit Count: {Application["VisitCount"]}\tLogged In: {Session["Username"]}");
-            Session["UserTable"] = GetTableWithEdit("../../ActionPages/Editor", 
-                DefaultColumns, (bool)Session["Admin"], Selector);
+            Session["UserTable"] = GetTableWithEdit("../ActionPages/Editor", 
+                DefaultColumns, Selector);
             Session["SignedIn"] = true;
-
-            MyAdoHelperAccess.FromSignIn = false;
-            Response.Redirect("../SignedIn/HomePage");
+            Response.Redirect("HomePage");
 
 
             string EqualCheck(string Operator, string key1, string key2)

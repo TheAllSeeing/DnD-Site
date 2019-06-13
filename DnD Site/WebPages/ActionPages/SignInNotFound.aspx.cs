@@ -12,7 +12,7 @@ namespace DnD_Site.ServerSide
         protected void Page_Load(object sender, EventArgs e)
         {
             Response.Write("User Not Found!");
-            Response.AddHeader("REFRESH", "2;URL=../Visitables/NoSignIn/SignIn");
+            Response.AddHeader("REFRESH", "2;URL=SignIn.aspx");
         }
     }
 }

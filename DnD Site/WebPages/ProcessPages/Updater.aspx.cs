@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using DnD_Site.App_Code;
+using static DnD_Site.App_Code.MyAdoHelperAccess;
 
 namespace DnD_Site.WebPages.ActionPages
 {
@@ -16,7 +16,7 @@ namespace DnD_Site.WebPages.ActionPages
             switch ((string)Session["Attribute"])
             {
                 case ("birthday"):
-                    MyAdoHelperAccess ExecuteNonQuery(
+                    ExecuteNonQuery(
                         UPDATE("birthday", //Header
                         AdjustDate(Request.Form["NewValue"]), //NewValue
                         Identifier)); //
@@ -25,7 +25,7 @@ namespace DnD_Site.WebPages.ActionPages
                     ExecuteNonQuery(
                         UPDATE(
                             "PhoneNumber",
-                            Request.Form["PhonePrefix"] + Request.Form["NewValue"],
+                            Request.Form["Prefix"] + Request.Form["NewValue"],
                             Identifier));
                     break;
                 default:
@@ -37,9 +37,9 @@ namespace DnD_Site.WebPages.ActionPages
                     break;
             }
 
-            Session["UserTable"] = GetTableWithEdit("../../ActionPages/Editor",
-                DefaultColumns, (bool)Session["Admin"], SELECTAll(Identifier));
-            Response.Redirect("../Visitables/SignedIn/Profile");
+            Session["UserTable"] = GetTableWithEdit("../ActionPages/Editor",
+                DefaultColumns, SELECTAll(Identifier));
+            Response.Redirect("../DynamicPages/Profile");
         }
     }
 }

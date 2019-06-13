@@ -6,27 +6,29 @@
 <head runat="server">
     <title></title>
 </head>
-<body style="background: url(../../../Images/blue.jpg) no-repeat fixed 100% 0;">
+<body>
     <link rel="stylesheet" href="StyleSheet1.css" />
     <form id="form1" runat="server">
-    <div style="color:white;">
+    <div style="color:white;" ;>
+        <br />
         <link rel="stylesheet" href="../../../StyleSheets/DefaultStyle.css" />
         <div class="topnav">
-            <a href="AboutTheSubject"> About D&D </a>
-            <a href="Sites">DnD Sites</a>
+            <a href="../Visitables/SignedIn/HomePage.aspx">Home Page</a>
+            <a href="About Me.html">About Me</a>
+            <a href="About the Subject.html"> About D&D </a>
             <%
             if (Session["SignedIn"] != null && (bool)Session["SignedIn"])
             {
             %>
-                <a href="../SignedIn/Profile">Profile</a>
-                <a href="../SignedIn/HomePage">Home Page</a>
-                <a href="../../ProcessPages/SignOut">Sign Out</a>
+                <a href="../SignedIn/Profile.aspx">Profile</a>
+                <a href="../SignedIn/HomePage.aspx">Home Page</a>
+                <a href="../../ProcessPages/SignOut.aspx">Sign Out</a>
 
             <%
 
                 if (Session["Admin"] != null && (bool)Session["Admin"])
                 {%>
-                   <a href="../SignedIn/Manager">User Manager</a>
+                   <a href="../SignedIn/Manager.aspx">User Manager</a>
               <%}
             }
 
@@ -34,10 +36,10 @@
             {
             %>
             <a href="SignUp.html">Sign Up</a>
-            <a href="SignIn"> Sign In</a>
+            <a href="SignIn.html"> Sign In</a>
             <%}%>
         </div>
-        <div>
+        <div class="default">
         <h1>About Me: Atai Ambus</h1>
         <p>
             My name is Atai Ambus. I was born on the seventeenth of November. I like stories, philosophy and
@@ -60,9 +62,8 @@
             <br />
             <br />
             <br />
-            <a href="AboutTheSubject">
-                <img src="../../../Images/Background (2).jpg" alt="About Me" 
-                    style="width:105px;height:63px;border:0;"/>
+            <a href="About the Subject.html">
+                <img src="Images/Background (2).jpg" alt="About Me" style="width:105px;height:63px;border:0;">
             </a>
             <br />
             <br />
