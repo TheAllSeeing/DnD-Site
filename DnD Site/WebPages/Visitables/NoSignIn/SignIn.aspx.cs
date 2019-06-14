@@ -54,8 +54,6 @@ public partial class SignIn : System.Web.UI.Page
             }
 
             Application["VisitCount"] = (int)Application["VisitCount"] + 1;
-
-            Response.Write($"Visit Count: {Application["VisitCount"]}\tLogged In: {Session["Username"]}");
             Session["UserTable"] = GetTableWithEdit("../../ActionPages/Editor", 
                 DefaultColumns, 
                 new string[] { (bool)Session["Admin"] ? "" : "admin" },

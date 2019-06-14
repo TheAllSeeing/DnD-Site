@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Diagnostics;
-using DnD_Site.App_Code;
+using static DnD_Site.App_Code.MyAdoHelperAccess;
 
 namespace DnD_Site
 {
@@ -17,14 +17,27 @@ namespace DnD_Site
             Session["LastName"] = Request.Form["LastName"];
             Session["Username"] = Request.Form["Username"];
             Session["SignedIn"] = true;
+            Session["Admin"] = false;
+
+            if (Application["VisitCount"] == null)
+            {
+                Application["VisitCount"] = 0;
+            }
+
+            Application["VisitCount"] = (int)Application["VisitCount"] + 1; ;
 
             string DbName = "Database.accdb";
-            MyAdoHelperAccess.ConnectToDb(DbName);
-            string cmd = MyAdoHelperAccess.INSERT( TakeVals("FirstName", "LastName", 
+            ConnectToDb(DbName);
+            string Command = INSERT( TakeVals("FirstName", "LastName", 
                 "Username", "email", "birthday", "PhoneNumber", "gender", "Password"));
-            MyAdoHelperAccess.ExecuteNonQuery(cmd);
+            ExecuteNonQuery(Command);
+            Session["UserID"] = GetValueByQuery("ID", $"Username='{Session["Username"]}'");
+            Session["UserTable"] = GetTableWithEdit("../../ActionPages/Editor",
+                DefaultColumns,
+                new string[] { (bool)Session["Admin"] ? "" : "admin" },
+                SELECT(new string[] { "*" },
+                EqualCheck("AND", "Username", "Password")));
             Response.Redirect("../Visitables/SignedIn/HomePage");
-        
         }
 
 
@@ -56,7 +69,7 @@ namespace DnD_Site
 
                 else if(Key == "birthday")
                 {
-                    Value = MyAdoHelperAccess.AdjustDate(Request.Form[Key]);
+                    Value = AdjustDate(Request.Form[Key]);
                 }
 
                 else
@@ -78,6 +91,12 @@ namespace DnD_Site
         string AdjustReserved(string Header)
         {
             return $"[{Header}]";
+        }
+
+
+        string EqualCheck(string Operator, string key1, string key2)
+        {
+            return $"{key1} = '{Request.Form[key1]}' {Operator} {key2} = '{Request.Form[key2]}'";
         }
     }
 }

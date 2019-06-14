@@ -110,6 +110,7 @@
     <Content Include="StyleSheets\DefaultStyle.css" />
     <Content Include="WebPages\ActionPages\DeleteConfirmer.aspx" />
     <Content Include="WebPages\ActionPages\Editor.aspx" />
+    <Content Include="WebPages\Visitables\NoSignIn\SignUp.html" />
     <Content Include="WebPages\ProcessPages\Updater.aspx" />
     <Content Include="WebPages\ProcessPages\Deleter.aspx" />
     <Content Include="WebPages\Visitables\NoSignIn\AboutMe.aspx" />
@@ -178,7 +179,7 @@
     <Content Include="Scripts\WebForms\WebForms.js" />
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
-    <Content Include="WebPages\Visitables\NoSignIn\SignUp.html" />
+    <Content Include="WebPages\Visitables\NoSignIn\SignUp2.html" />
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config">

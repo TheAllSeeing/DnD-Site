@@ -41,7 +41,7 @@
                     Response.Write(GetRadio(
                         new string[] { "male", "female", "other" },
                         (string)Session["CurrentVal"],
-                        "gender"));
+                        "NewValue"));
                     break;
                 default:
                     Response.Write("<input type=\"text\" name=\"NewValue\" value=\"\" />");
@@ -77,7 +77,7 @@
                 foreach(string Val in Values)
                 {
                     RadioCode += $"<input name=\"{Name}\" id=\"{Name}\" type=\"radio\" " +
-                        $"value=\"{Val}\" /> {Val} <br /> <br />";
+                        $"value=\"{Val}\"{(Val ==  Default ? "checked=\"checked\"" : "")} /> {Val} <br /> <br />";
                     RadioCode += Environment.NewLine;
                 }
 
