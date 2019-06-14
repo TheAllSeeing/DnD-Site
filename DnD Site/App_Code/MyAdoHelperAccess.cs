@@ -19,15 +19,15 @@ namespace DnD_Site.App_Code
         public static readonly string Indent = new string (' ', 4);
         public static readonly string DoubleIndent = new string (' ', 8);
         public static readonly string[] DefaultColumns = new string[] {"FirstName",
-            "LastName", "birthday", "PhoneNumber","gender","email", "Username", "Password"};
+            "LastName", "birthday", "PhoneNumber","gender","email", "Username", "Password", "IDNum"};
         public static readonly string[] DefaultColumnsVisual = new string[] {"No.", "ID",
             "FirstName", "LastName", "birthday", "PhoneNumber","gender",
-            "email", "Username", "Password", "Delete Buttons" };
+            "email", "Username", "IDNum", "Password", "Delete Buttons" };
         public static readonly string[] DefaultForbidden = new string[] { "admin" };
         public static readonly Dictionary<string, string> ColumnToHeader = new Dictionary<string, string>
         {
             {"No.", "No." },
-            {"ID", "ID"},
+            {"ID", "User ID"},
             {"FirstName",  "First Name"},
             {"LastName", "Last Name"},
             {"birthday", "Birthday"},
@@ -36,6 +36,7 @@ namespace DnD_Site.App_Code
             {"email", "Email"},
             {"Username", "Username"},
             {"Password", "Password"},
+            {"IDNum", "Identification Number"},
             {"Delete Buttons", "Delete Buttons"}
         };
 

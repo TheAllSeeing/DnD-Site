@@ -110,12 +110,15 @@
     <Content Include="StyleSheets\DefaultStyle.css" />
     <Content Include="WebPages\ActionPages\DeleteConfirmer.aspx" />
     <Content Include="WebPages\ActionPages\Editor.aspx" />
+    <Content Include="WebPages\ProcessPages\IDUpdater.aspx" />
+    <Content Include="WebPages\Visitables\NoSignIn\NewSignIn.aspx" />
     <Content Include="WebPages\Visitables\NoSignIn\SignUp.html" />
     <Content Include="WebPages\ProcessPages\Updater.aspx" />
     <Content Include="WebPages\ProcessPages\Deleter.aspx" />
     <Content Include="WebPages\Visitables\NoSignIn\AboutMe.aspx" />
     <Content Include="WebPages\Visitables\NoSignIn\AboutTheSubject.aspx" />
     <Content Include="WebPages\Visitables\NoSignIn\Sites.aspx" />
+    <Content Include="WebPages\Visitables\NoSignIn\UpdateID.html" />
     <Content Include="WebPages\Visitables\SignedIn\HomePage.aspx" />
     <Content Include="WebPages\Visitables\SignedIn\Manager.aspx" />
     <Content Include="WebPages\Visitables\SignedIn\Profile.aspx" />
@@ -231,6 +234,13 @@
     <Compile Include="WebPages\ActionPages\Editor.aspx.designer.cs">
       <DependentUpon>Editor.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WebPages\ProcessPages\IDUpdater.aspx.cs">
+      <DependentUpon>IDUpdater.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebPages\ProcessPages\IDUpdater.aspx.designer.cs">
+      <DependentUpon>IDUpdater.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebPages\ProcessPages\Updater.aspx.cs">
       <DependentUpon>Updater.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -258,6 +268,13 @@
     </Compile>
     <Compile Include="WebPages\Visitables\NoSignIn\AboutTheSubject.aspx.designer.cs">
       <DependentUpon>AboutTheSubject.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebPages\Visitables\NoSignIn\NewSignIn.aspx.cs">
+      <DependentUpon>NewSignIn.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebPages\Visitables\NoSignIn\NewSignIn.aspx.designer.cs">
+      <DependentUpon>NewSignIn.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebPages\Visitables\NoSignIn\Sites.aspx.cs">
       <DependentUpon>Sites.aspx</DependentUpon>

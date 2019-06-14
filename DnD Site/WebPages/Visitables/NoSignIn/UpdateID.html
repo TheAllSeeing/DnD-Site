@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Update ID!</title>
+    <link rel="stylesheet" href="../../../StyleSheets/DefaultStyle.css" />
+    <script type="text/javascript">
+        function validate() {
+            var element = document.getElementById("newID")
+            if (isNaN(element.value)) {
+                element.focus;
+                alert('\nID Must be only digits!');
+                return false;
+            }
+
+            if (element.value.length != 9) {
+                element.focus;
+                alert("\nID must be nine digits exactly!")
+                return false;
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <div class="topnav">
+        <a href="AboutTheSubject">About D&D</a>
+        <a href="AboutMe">About Me</a>
+        <a href="Sites">DnD Sites</a>
+        <a href="SignUp.html">Sign Up</a>
+        <a href="NewSignIn.aspx">Sign In</a>
+    </div>
+    <div class="default">
+        <h1>Update ID!</h1>
+        <form action="../../ProcessPages/IDUpdater" onsubmit="return validate()" method="post">
+            Your user name: <input type="text" id="username" name="Username" />
+            New ID: <input type="text" id="newID" name="newID" />
+            <input type="submit" value="Update ID" />
+        </form>
+    </div>
+</body>
+</html>
