@@ -126,7 +126,6 @@
     <Content Include="WebPages\ActionPages\SignInNotFound.aspx" />
     <Content Include="WebPages\ProcessPages\SignOut.aspx" />
     <Content Include="WebPages\ProcessPages\SignUp.aspx" />
-    <Content Include="WebPages\Visitables\NoSignIn\About the Subject.html" />
     <Content Include="About.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -147,7 +146,7 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
-    <Content Include="Images\Background %281%29.jpg" />
+    <Content Include="Images\AboutTheSubject.jpg" />
     <Content Include="Images\Background %282%29.jpg" />
     <Content Include="Images\blue.jpg" />
     <Content Include="Images\DD_Transparent.png" />

@@ -13,13 +13,13 @@
     <form id="form1" runat="server">
 
         <div class="topnav">
-            <a href="../WebPages/About Me.html">About Me</a> 
-            <a href="../WebPages/Sources.html">D&D Sites</a> 
-            <a href="../WebPages/About the Subject.html">About D&D  </a> 
+            <a href="../NoSignIn/AboutMe.aspx">About Me</a> 
+            <a href="../NoSignIn/Sites.aspx">D&D Sites</a> 
+            <a href="../NoSignIn/About the Subject.html">About D&D  </a> 
             <%if((bool)Session["Admin"])
-                { %> 
-            <a href="Manager.aspx">Manage Users</a>
-            <%  } %> 
+              { %> 
+                <a href="Manager.aspx">Manage Users</a>
+            <%} %> 
             <a href="../../ProcessPages/SignOut.aspx">Sign Out</a>
         </div>
 

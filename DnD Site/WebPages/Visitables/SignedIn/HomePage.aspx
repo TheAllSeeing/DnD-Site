@@ -18,7 +18,6 @@
             {
             %>
                 <a href="Profile">Profile</a>
-                <a href="../SignedIn/HomePage">Home Page</a>
                 <a href="../../ProcessPages/SignOut">Sign Out</a>
 
             <%

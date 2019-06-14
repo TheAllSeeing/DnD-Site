@@ -4,22 +4,21 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>D&D Sites!</title>
+    <link rel="stylesheet" href="../../../StyleSheets/DefaultStyle.css" />
 </head>
 <body>
     <form id="form1" runat="server">
         <div style="text-align:left">
-        <link rel="stylesheet" href="../../../StyleSheets/DefaultStyle.css" />
         <div class="topnav">
-            <a href="../Visitables/SignedIn/HomePage.aspx">Home Page</a>
-            <a href="About Me.html">About Me</a>
-            <a href="About the Subject.html"> About D&D </a>
+            <a href="AboutMe">About Me</a>
+            <a href="AboutTheSubject.aspx">About D&D </a>
             <%
                 if (Session["SignedIn"] != null && (bool)Session["SignedIn"])
                 {
             %>
-                    <a href="../SignedIn/Profile.aspx">Profile</a>
-                    <a href="../SignedIn/HomePage.aspx">Home Page</a>
+                    <a href="../SignedIn/Profile">Profile</a>
+                    <a href="../SignedIn/HomePage">Home Page</a>
                     <a href="../../ProcessPages/SignOut.aspx">Sign Out</a>
             
             <% 
@@ -34,7 +33,7 @@
                 {
                 %>
                     <a href="SignUp.html">Sign Up</a>
-                    <a href="SignIn.html"> Sign In</a>      
+                    <a href="SignIn"> Sign In</a>      
               <%}%>
         </div>
 

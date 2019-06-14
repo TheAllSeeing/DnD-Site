@@ -7,7 +7,7 @@
     <title>About D&D</title>
     <link rel="stylesheet" href="../../../StyleSheets/DefaultStyle.css" />
 </head>
-<body>
+<body style="background: url(../../../Images/AboutTheSubject.jpg)">
     <form id="form1" runat="server">
    <div>
         <div class="topnav">
@@ -17,6 +17,7 @@
             if (Session["SignedIn"] != null && (bool)Session["SignedIn"])
             {
             %>
+            <a href="../../../Images/AboutTheSubject.jpg"
                 <a href="../SignedIn/Profile">Profile</a>
                 <a href="../SignedIn/HomePage">Home Page</a>
                 <a href="../../ProcessPages/SignOut">Sign Out</a>
